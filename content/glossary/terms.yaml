@@ -1,0 +1,361 @@
+- id: term.agent-loop
+  term: Agent Loop
+  zhTerm: 智能体循环
+  aliases: [Agent 执行循环, Think-Act-Observe]
+  domain: agent-core
+  definition: 模型在目标驱动下反复进行推理决策、调用工具并消费环境观察结果，直至命中停止条件的闭环过程。
+  sourceIds: [anthropic.effective-agents, hf.agents-course]
+  nodeId: agent.loop
+
+- id: term.workflow
+  term: Workflow
+  zhTerm: 确定性工作流
+  aliases: [Pipeline, DAG 编排]
+  domain: workflow
+  definition: 由开发者显式定义步骤顺序、分支与状态流转的执行图，LLM 仅在特定节点承担推理或提取职责。
+  controversyNotes: 工程界常将高自主循环与固定工作流统称为“Agent”，但 Anthropic 工程指南建议严格区分二者以控制成本与可预测性。
+  sourceIds: [anthropic.effective-agents]
+  nodeId: agent.taxonomy
+
+- id: term.agent
+  term: Autonomous Agent
+  zhTerm: 自治智能体
+  aliases: [Agent]
+  domain: agent-core
+  definition: 模型动态决定后续工具选择、分支策略及何时终止任务的系统形态。
+  sourceIds: [anthropic.effective-agents]
+  nodeId: agent.taxonomy
+
+- id: term.token
+  term: Token
+  zhTerm: 词元
+  aliases: [Subword Token]
+  domain: llm
+  definition: 分词器将文本切分后的最小计费与建模整数单元；中文通常每个汉字占 1-2 个以上 Token。
+  sourceIds: [openai.function-calling]
+  nodeId: llm.tokens-context
+
+- id: term.context-window
+  term: Context Window
+  zhTerm: 上下文窗口
+  aliases: [Max Context Length]
+  domain: llm
+  definition: 模型单次前向推理可同时处理的输入与输出 Token 总容量上限。
+  sourceIds: [anthropic.context-engineering]
+  nodeId: llm.tokens-context
+
+- id: term.structured-output
+  term: Structured Output
+  zhTerm: 结构化输出
+  aliases: [JSON Schema Output, Constrained Decoding]
+  domain: llm
+  definition: 通过受限解码或 Schema 校验强制模型输出严格符合预定义 JSON 结构的能力。
+  sourceIds: [openai.function-calling]
+  nodeId: llm.structured-output
+
+- id: term.function-calling
+  term: Function Calling
+  zhTerm: 函数调用
+  aliases: [Tool Calling, 工具调用]
+  domain: tools-protocols
+  definition: 模型依据工具 Schema 输出结构化调用意图（函数名与参数），由宿主运行时实际执行并回填结果。
+  sourceIds: [openai.function-calling]
+  nodeId: tools.function-calling
+
+- id: term.mcp
+  term: Model Context Protocol (MCP)
+  zhTerm: 模型上下文协议
+  aliases: [MCP]
+  domain: tools-protocols
+  definition: 标准化 AI 应用（Host/Client）与外部数据源及工具服务（Server）之间通信的开放协议。
+  sourceIds: [mcp.spec]
+  nodeId: tools.mcp-architecture
+
+- id: term.a2a
+  term: Agent2Agent Protocol (A2A)
+  zhTerm: 智能体间通信协议
+  aliases: [A2A]
+  domain: multi-agent
+  definition: 面向跨框架、跨组织独立 Agent 之间进行能力发现（Agent Card）与任务委派的开放协议。
+  sourceIds: [a2a.spec]
+  nodeId: multi-agent.a2a-protocol
+
+- id: term.react
+  term: ReAct
+  zhTerm: 推理与行动交错模式
+  aliases: [Reasoning and Acting]
+  domain: patterns
+  definition: 将显式推理轨迹（Thought）与外部环境交互（Action / Observation）交错进行的经典 Agent 范式。
+  sourceIds: [paper.react]
+  nodeId: patterns.react
+
+- id: term.context-engineering
+  term: Context Engineering
+  zhTerm: 上下文工程
+  aliases: [上下文编排]
+  domain: context
+  definition: 在模型有限的注意力预算内，系统化策展、压缩、过滤并按需注入最有效信息集的工程实践。
+  sourceIds: [anthropic.context-engineering]
+  nodeId: context.engineering-principles
+
+- id: term.context-rot
+  term: Context Rot
+  zhTerm: 上下文腐烂
+  aliases: [Attention Dilution]
+  domain: context
+  definition: 随着无关历史与冗余工具输出不断堆叠，模型从上下文中检索并遵循关键约束的能力显著下降的现象。
+  sourceIds: [anthropic.context-engineering]
+  nodeId: context.engineering-principles
+
+- id: term.compaction
+  term: Compaction
+  zhTerm: 上下文压缩
+  aliases: [上下文摘要压缩]
+  domain: context
+  definition: 当会话接近窗口预算时，将早期历史提炼为保留关键决策与未决事项的高密度摘要并重置工作缓冲。
+  sourceIds: [anthropic.context-engineering]
+  nodeId: context.budget-compaction
+
+- id: term.state
+  term: Runtime State
+  zhTerm: 运行时状态
+  aliases: [Graph State]
+  domain: context
+  definition: 由宿主持久化和校验的结构化程序状态（如步数、审批标识、检查点），与喂给 LLM 的提示上下文（Context）职责分离。
+  sourceIds: [langchain.langgraph]
+  nodeId: context.state-vs-context
+
+- id: term.rag
+  term: Retrieval-Augmented Generation (RAG)
+  zhTerm: 检索增强生成
+  aliases: [RAG]
+  domain: rag-memory
+  definition: 在生成回答前先从外部知识库检索相关文档片段注入上下文，以降低幻觉并支撑可追溯引用。
+  sourceIds: [paper.rag]
+  nodeId: rag.fundamentals-chunking
+
+- id: term.chunking
+  term: Chunking
+  zhTerm: 文档切分
+  aliases: [分块策略]
+  domain: rag-memory
+  definition: 将长文档按语义边界、标题或固定窗口切分为可检索与嵌入的粒度单元的过程。
+  sourceIds: [paper.rag]
+  nodeId: rag.fundamentals-chunking
+
+- id: term.rerank
+  term: Rerank
+  zhTerm: 检索重排
+  aliases: [Cross-Encoder Reranking]
+  domain: rag-memory
+  definition: 在初筛召回的候选片段上运行更高精度的相关性打分器，过滤噪声并提升送入上下文的信噪比。
+  sourceIds: [ms.ai-agents-beginners]
+  nodeId: rag.hybrid-rerank
+
+- id: term.agentic-rag
+  term: Agentic RAG
+  zhTerm: 智能体检索增强
+  aliases: [Adaptive RAG]
+  domain: rag-memory
+  definition: 由 Agent 根据问题复杂度与召回充分性自主改写查询、选择数据源及发起多跳检索的架构。
+  sourceIds: [hf.agents-course]
+  nodeId: rag.agentic-rag
+
+- id: term.working-memory
+  term: Working Memory
+  zhTerm: 工作记忆
+  aliases: [Short-term Scratchpad]
+  domain: rag-memory
+  definition: 支撑当前单次任务执行过程的临时推理草稿、对话轮次与局部工具观察缓存。
+  sourceIds: [paper.memgpt]
+  nodeId: memory.architecture-lifecycle
+
+- id: term.semantic-memory
+  term: Semantic Memory
+  zhTerm: 语义长期记忆
+  aliases: [Long-term Fact Memory]
+  domain: rag-memory
+  definition: 跨会话持久化的用户偏好、领域事实与实体关系存储，需要写入治理与冲突覆盖机制。
+  sourceIds: [paper.memgpt]
+  nodeId: memory.architecture-lifecycle
+
+- id: term.checkpoint
+  term: Checkpoint
+  zhTerm: 检查点
+  aliases: [Durable State Snapshot]
+  domain: workflow
+  definition: 在状态图关键边界保存的完整状态快照，使长程工作流支持断点恢复、回放与人工中断恢复。
+  sourceIds: [langchain.langgraph]
+  nodeId: workflow.checkpoint-durability
+
+- id: term.hitl
+  term: Human-in-the-Loop (HITL)
+  zhTerm: 人在回路审批
+  aliases: [Human Approval]
+  domain: workflow
+  definition: 在高风险或不可逆操作执行前暂停运行时状态机，等待人类审阅并显式批准或修改参数。
+  sourceIds: [langchain.langgraph, owasp.llm-top10]
+  nodeId: workflow.hitl-idempotency
+
+- id: term.idempotency
+  term: Idempotency
+  zhTerm: 幂等性
+  aliases: [幂等执行]
+  domain: workflow
+  definition: 同一工具请求在故障重试或断点恢复时被重复执行多次，系统最终状态与执行一次完全一致的性质。
+  sourceIds: [langchain.langgraph]
+  nodeId: workflow.hitl-idempotency
+
+- id: term.handoff
+  term: Handoff
+  zhTerm: 控制权交接
+  aliases: [Agent Delegation]
+  domain: multi-agent
+  definition: 将当前对话或任务控制权从一个专职 Agent 转移给另一个具备不同工具或权限的 Agent。
+  sourceIds: [openai.agents-sdk]
+  nodeId: multi-agent.roles-handoffs
+
+- id: term.harness
+  term: Agent Harness
+  zhTerm: 智能体运行底座
+  aliases: [Harness Engineering, 运行时框架]
+  domain: harness
+  definition: 包裹在模型外围的完整工程基础设施，负责工具沙箱、命令权限、预算熔断、进度持久化和自动测试反馈。
+  sourceIds: [anthropic.effective-harnesses]
+  nodeId: harness.runtime-sandbox
+
+- id: term.agents-md
+  term: AGENTS.md
+  zhTerm: 仓库代理指令文件
+  aliases: [Project Agent Instructions]
+  domain: coding-agents
+  definition: 放置在代码仓库中，向 Coding Agent 声明目录结构、构建测试命令及不可违背约束的标准化指令文件。
+  sourceIds: [agentskills.spec]
+  nodeId: coding.repo-context-agents-md
+
+- id: term.agent-skills
+  term: Agent Skills
+  zhTerm: 智能体技能包
+  aliases: [Skills]
+  domain: coding-agents
+  definition: 按需渐进披露的领域指令、脚本与模板目录，避免将大量低频操作手册一次性塞满系统提示。
+  controversyNotes: 不同厂商对 Skill 目录规范与触发机制存在差异，学习时应聚焦“渐进式按需加载”核心模式而非绑定单一产品。
+  sourceIds: [agentskills.spec]
+  nodeId: coding.agent-skills
+
+- id: term.evals
+  term: Evals
+  zhTerm: 系统化评估
+  aliases: [Agent Evaluation]
+  domain: evals
+  definition: 通过黄金数据集、确定性断言与回归门禁量化衡量 Agent 准确率、工具调用正确性与成本波动的工程体系。
+  sourceIds: [promptfoo.docs]
+  nodeId: evals.datasets-metrics
+
+- id: term.trace
+  term: Execution Trace
+  zhTerm: 执行追踪链路
+  aliases: [Observability Trace, Span]
+  domain: evals
+  definition: 记录单次请求内每次模型调用、工具参数、延迟、Token 消耗及异常堆栈的结构化父子树形轨迹。
+  sourceIds: [otel.genai, langfuse.docs]
+  nodeId: evals.tracing-observability
+
+- id: term.llm-as-judge
+  term: LLM-as-a-Judge
+  zhTerm: 模型裁判评分
+  aliases: [Model Grader]
+  domain: evals
+  definition: 使用强模型按评分准则自动评估开放式输出的方案；存在位置偏见、长度偏见及评分漂移风险。
+  sourceIds: [promptfoo.docs]
+  nodeId: evals.llm-as-judge-limits
+
+- id: term.prompt-injection
+  term: Prompt Injection
+  zhTerm: 提示注入
+  aliases: [Indirect Prompt Injection]
+  domain: security
+  definition: 攻击者通过用户输入或外部检索文档（间接注入）夹带恶意指令，劫持模型原有目标与工具调用行为。
+  sourceIds: [owasp.llm-top10]
+  nodeId: security.prompt-injection
+
+- id: term.least-privilege
+  term: Least Privilege
+  zhTerm: 最小权限原则
+  aliases: [Capability Scoping]
+  domain: security
+  definition: 仅向 Agent 暴露完成当前任务所需的最小只读/受限工具与凭据作用域，禁止默认授予全量写权限。
+  sourceIds: [owasp.llm-top10]
+  nodeId: security.least-privilege-approval
+
+- id: term.prompt-chaining
+  term: Prompt Chaining
+  zhTerm: 提示链
+  aliases: [Sequential Chain]
+  domain: patterns
+  definition: 将复杂任务拆解为前后衔接的确定性调用步骤，并在步骤间插入程序化校验门禁。
+  sourceIds: [anthropic.effective-agents]
+  nodeId: patterns.prompt-chaining-routing
+
+- id: term.orchestrator-workers
+  term: Orchestrator-Workers
+  zhTerm: 编排者-工作者模式
+  aliases: [Dynamic Task Decomposition]
+  domain: patterns
+  definition: 由中心编排模型动态拆解子任务并分派给多个执行单元，最后汇总结果的高灵活度协作模式。
+  sourceIds: [anthropic.effective-agents]
+  nodeId: patterns.orchestrator-workers
+
+- id: term.evaluator-optimizer
+  term: Evaluator-Optimizer
+  zhTerm: 评估-优化闭环
+  aliases: [Generate-Critique Loop]
+  domain: patterns
+  definition: 由生成单元产出候选结果、评估单元给出可操作改进意见并迭代修订直至达标的模式。
+  sourceIds: [anthropic.effective-agents]
+  nodeId: patterns.evaluator-optimizer
+
+- id: term.stop-condition
+  term: Stop Condition
+  zhTerm: 停止条件
+  aliases: [Termination Criteria, Max Steps]
+  domain: agent-core
+  definition: 防止 Agent 陷入无限循环的显式退出规则，包括目标完成信号、最大步数、预算上限与连续失败熔断。
+  sourceIds: [anthropic.effective-agents]
+  nodeId: agent.stop-conditions
+
+- id: term.sampling
+  term: Decoding & Sampling
+  zhTerm: 解码与采样
+  aliases: [Temperature, Top-P]
+  domain: llm
+  definition: 控制模型从概率分布中选择下一个 Token 的策略；工具调用与结构化输出通常需要低温或确定性解码。
+  sourceIds: [openai.function-calling]
+  nodeId: llm.sampling-decoding
+
+- id: term.pass-at-k
+  term: Pass@k
+  zhTerm: k 次尝试通过率
+  aliases: [Stochastic Pass Rate]
+  domain: evals
+  definition: 独立采样执行 k 次中至少成功解决一次的概率，用于刻画非确定性 Agent 在真实环境中的稳定性。
+  sourceIds: [paper.swe-bench]
+  nodeId: evals.datasets-metrics
+
+- id: term.fts5
+  term: SQLite FTS5
+  zhTerm: 全文检索扩展
+  aliases: [BM25 Full-Text Search]
+  domain: deployment
+  definition: SQLite 内置倒排索引虚拟表引擎，支持 BM25 相关性排序、片段高亮与本地零外部进程全文检索。
+  sourceIds: [sqlite.fts5]
+  nodeId: deployment.local-offline-ops
+
+- id: term.sandbox
+  term: Execution Sandbox
+  zhTerm: 执行沙箱
+  aliases: [Isolation Boundary]
+  domain: harness
+  definition: 限制代码或工具进程所能访问的文件目录、网络出口、系统环境变量及 CPU/时间资源的隔离运行边界。
+  sourceIds: [anthropic.effective-harnesses, hf.smolagents]
+  nodeId: harness.runtime-sandbox

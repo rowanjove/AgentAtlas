@@ -1,0 +1,41 @@
+id: rag-knowledge-engineering
+title: RAG 与知识工程路径
+enTitle: RAG & Knowledge Engineering Path
+goal: 从第一性原理掌握分块、混合检索、重排、Agentic RAG 与跨会话长短期记忆治理。
+audience: 搜索、知识库与企业 AI 工程师
+estimatedHours: 5
+stages:
+  - id: stage-retrieval
+    title: 1. 检索基础与重排
+    description: 建立精准召回与高信噪比排序管道。
+    nodeIds:
+      - llm.tokens-context
+      - rag.fundamentals-chunking
+      - rag.hybrid-rerank
+  - id: stage-agentic-memory
+    title: 2. Agentic RAG 与记忆系统
+    description: 区分临时工作缓冲与受控长期记忆写入。
+    nodeIds:
+      - rag.agentic-rag
+      - context.state-vs-context
+      - memory.architecture-lifecycle
+  - id: stage-quality-security
+    title: 3. 引用校验与间接注入防护
+    description: 防范外部文档中的间接提示注入并评估引用真实性。
+    nodeIds:
+      - security.prompt-injection
+      - evals.datasets-metrics
+requiredNodeIds:
+  - llm.tokens-context
+  - rag.fundamentals-chunking
+  - rag.hybrid-rerank
+  - rag.agentic-rag
+  - memory.architecture-lifecycle
+  - security.prompt-injection
+optionalNodeIds:
+  - context.state-vs-context
+  - evals.datasets-metrics
+extensionEdges:
+  - fromId: rag.hybrid-rerank
+    toId: rag.agentic-rag
+    kind: recommended

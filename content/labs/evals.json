@@ -1,0 +1,18 @@
+{
+  "id": "evals",
+  "title": "Evals 回归门禁与 Judge 漂移实验室",
+  "enTitle": "Evals & Regression Gate Lab",
+  "category": "Evals & Observability",
+  "summary": "演示 Golden Dataset 回放、规则断言与 LLM-as-Judge 组合评分，以及 Judge 漂移导致的回归门禁拦截。",
+  "observableVars": ["grader", "passRate", "threshold", "passedGate"],
+  "controls": ["grader", "passThreshold", "seed", "faultInjection"],
+  "relatedNodeIds": ["evals.datasets-metrics", "evals.llm-as-judge-limits"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "grader": "deterministic-plus-judge",
+    "passThreshold": 0.8
+  },
+  "faultOptions": [
+    { "id": "judge-drift", "label": "LLM-as-Judge 评分漂移", "description": "演示无 Rubric 固定时 Judge 对简短正确答案误判低分" }
+  ]
+}

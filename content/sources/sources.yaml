@@ -1,0 +1,228 @@
+- id: anthropic.effective-agents
+  title: "Building effective agents"
+  url: https://www.anthropic.com/engineering/building-effective-agents
+  kind: engineering-blog
+  licenseStatus: Reference link only
+  upstreamVersion: "2024-12"
+  verifiedAt: "2026-11-26"
+  notes: Anthropic 区分 Workflow 与 Agent、提出 Prompt Chaining/Routing/Parallelization/Orchestrator-Workers/Evaluator-Optimizer 等工程模式。
+
+- id: anthropic.context-engineering
+  title: "Effective context engineering for AI agents"
+  url: https://www.anthropic.com/research/effective-context-engineering-for-ai-agents
+  kind: engineering-blog
+  licenseStatus: Reference link only
+  upstreamVersion: "2025"
+  verifiedAt: "2026-11-26"
+  notes: Anthropic 阐述 Context Engineering、上下文腐烂 (Context Rot)、Compaction 与 Just-in-time 检索。
+
+- id: anthropic.effective-harnesses
+  title: "Effective harnesses for long-running agents"
+  url: https://www.anthropic.com/research/effective-harnesses-for-long-running-agents
+  kind: engineering-blog
+  licenseStatus: Reference link only
+  upstreamVersion: "2025"
+  verifiedAt: "2026-11-26"
+  notes: 长程运行 Agent 的 Initializer + Coding Agent 交接、进度文件与测试验证闭环。
+
+- id: mcp.spec
+  title: "Model Context Protocol (MCP) Documentation & Specification"
+  url: https://modelcontextprotocol.io/
+  kind: spec
+  licenseStatus: MIT / Open Specification
+  upstreamVersion: "2025-03-26"
+  verifiedAt: "2026-11-26"
+  notes: Host/Client/Server 架构、JSON-RPC 2.0、Tools/Resources/Prompts 原语与安全边界。
+
+- id: a2a.spec
+  title: "Agent2Agent (A2A) Protocol Specification"
+  url: https://a2a-protocol.org/
+  kind: spec
+  licenseStatus: Apache-2.0
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+  notes: Agent Card、Task 生命周期、Artifacts 与跨运行时互操作规范。
+
+- id: openai.function-calling
+  title: "OpenAI API Docs: Function Calling & Structured Outputs"
+  url: https://platform.openai.com/docs/guides/function-calling
+  kind: official
+  licenseStatus: Reference link only
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: openai.agents-sdk
+  title: "OpenAI Agents SDK (openai-agents-python)"
+  url: https://github.com/openai/openai-agents-python
+  kind: open-source
+  licenseStatus: MIT
+  upstreamVersion: "0.x"
+  verifiedAt: "2026-11-26"
+
+- id: langchain.langgraph
+  title: "LangGraph Documentation & Repository"
+  url: https://github.com/langchain-ai/langgraph
+  kind: open-source
+  licenseStatus: MIT
+  upstreamVersion: "0.x / 1.x"
+  verifiedAt: "2026-11-26"
+
+- id: pydantic.ai
+  title: "PydanticAI Documentation"
+  url: https://ai.pydantic.dev/
+  kind: official
+  licenseStatus: MIT
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: hf.smolagents
+  title: "Hugging Face smolagents"
+  url: https://github.com/huggingface/smolagents
+  kind: open-source
+  licenseStatus: Apache-2.0
+  upstreamVersion: "1.x"
+  verifiedAt: "2026-11-26"
+
+- id: hf.agents-course
+  title: "Hugging Face Agents Course"
+  url: https://github.com/huggingface/agents-course
+  kind: open-source
+  licenseStatus: Apache-2.0
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: ms.ai-agents-beginners
+  title: "Microsoft AI Agents for Beginners"
+  url: https://github.com/microsoft/ai-agents-for-beginners
+  kind: open-source
+  licenseStatus: MIT
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: crewai.docs
+  title: "CrewAI Repository & Documentation"
+  url: https://github.com/crewAIInc/crewAI
+  kind: open-source
+  licenseStatus: MIT
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: google.adk
+  title: "Google Agent Development Kit (ADK)"
+  url: https://google.github.io/adk-docs/
+  kind: official
+  licenseStatus: Apache-2.0
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: paper.react
+  title: "ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022)"
+  url: https://arxiv.org/abs/2210.03629
+  kind: paper
+  licenseStatus: arXiv paper reference
+  upstreamVersion: "ICLR 2023"
+  verifiedAt: "2026-11-26"
+
+- id: paper.rag
+  title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)"
+  url: https://arxiv.org/abs/2005.11401
+  kind: paper
+  licenseStatus: arXiv paper reference
+  upstreamVersion: "NeurIPS 2020"
+  verifiedAt: "2026-11-26"
+
+- id: paper.swe-bench
+  title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (Jimenez et al., 2023)"
+  url: https://arxiv.org/abs/2310.06770
+  kind: paper
+  licenseStatus: arXiv paper reference
+  upstreamVersion: "ICLR 2024"
+  verifiedAt: "2026-11-26"
+
+- id: paper.reflexion
+  title: "Reflexion: Language Agents with Verbal Reinforcement Learning (Shinn et al., 2023)"
+  url: https://arxiv.org/abs/2303.11366
+  kind: paper
+  licenseStatus: arXiv paper reference
+  upstreamVersion: "NeurIPS 2023"
+  verifiedAt: "2026-11-26"
+
+- id: paper.memgpt
+  title: "MemGPT: Towards LLMs as Operating Systems (Packer et al., 2023)"
+  url: https://arxiv.org/abs/2310.08560
+  kind: paper
+  licenseStatus: arXiv paper reference
+  upstreamVersion: "2023"
+  verifiedAt: "2026-11-26"
+
+- id: owasp.llm-top10
+  title: "OWASP Top 10 for Large Language Model Applications"
+  url: https://genai.owasp.org/llm-top-10/
+  kind: official
+  licenseStatus: CC BY-SA 4.0
+  upstreamVersion: "2025"
+  verifiedAt: "2026-11-26"
+
+- id: otel.genai
+  title: "OpenTelemetry Semantic Conventions for Generative AI"
+  url: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+  kind: spec
+  licenseStatus: Apache-2.0
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: langfuse.docs
+  title: "Langfuse Open Source LLM Engineering & Observability"
+  url: https://langfuse.com/docs
+  kind: open-source
+  licenseStatus: MIT / EE
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: promptfoo.docs
+  title: "Promptfoo LLM Evaluation & Red Teaming"
+  url: https://www.promptfoo.dev/docs/intro/
+  kind: open-source
+  licenseStatus: MIT
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: sqlite.fts5
+  title: "SQLite FTS5 Extension Documentation"
+  url: https://www.sqlite.org/fts5.html
+  kind: official
+  licenseStatus: Public Domain
+  upstreamVersion: "3.50.4"
+  verifiedAt: "2026-11-26"
+
+- id: agentskills.spec
+  title: "Agent Skills Format & AGENTS.md Conventions"
+  url: https://agents.md/
+  kind: spec
+  licenseStatus: Open specification
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: lmstudio.docs
+  title: "LM Studio Local OpenAI-Compatible Server Docs"
+  url: https://lmstudio.ai/docs/app/api
+  kind: official
+  licenseStatus: Reference link only
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: ollama.docs
+  title: "Ollama OpenAI Compatibility & Local Runtime"
+  url: https://github.com/ollama/ollama
+  kind: open-source
+  licenseStatus: MIT
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"
+
+- id: langflow.docs
+  title: "Langflow Visual Agent Builder"
+  url: https://github.com/langflow-ai/langflow
+  kind: open-source
+  licenseStatus: MIT
+  upstreamVersion: "latest"
+  verifiedAt: "2026-11-26"

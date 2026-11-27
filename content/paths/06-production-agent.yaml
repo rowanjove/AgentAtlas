@@ -1,0 +1,45 @@
+id: production-agent
+title: 生产级 Agent 工程路径
+enTitle: Production Agent Engineering Path
+goal: 掌握持久检查点、幂等性、Trace 可观测、安全权限与本地离线部署，保障线上可恢复与可审计。
+audience: 生产系统与平台工程师
+estimatedHours: 6
+stages:
+  - id: stage-durability
+    title: 1. 可靠工作流与幂等持久化
+    description: 设计崩溃可恢复状态机与人类审批门禁。
+    nodeIds:
+      - workflow.dag-state-machine
+      - workflow.checkpoint-durability
+      - workflow.hitl-idempotency
+  - id: stage-observability-security
+    title: 2. 追踪、评估与纵深防御
+    description: 建立端到端 Trace、回归门禁与最小权限边界。
+    nodeIds:
+      - evals.tracing-observability
+      - evals.datasets-metrics
+      - evals.llm-as-judge-limits
+      - security.prompt-injection
+      - security.least-privilege-approval
+  - id: stage-ops
+    title: 3. 本地部署与运维工程
+    description: 平衡延迟、成本、数据本地化与离线可用性。
+    nodeIds:
+      - llm.reasoning-cost
+      - deployment.local-offline-ops
+requiredNodeIds:
+  - workflow.dag-state-machine
+  - workflow.checkpoint-durability
+  - workflow.hitl-idempotency
+  - evals.tracing-observability
+  - evals.datasets-metrics
+  - security.least-privilege-approval
+  - deployment.local-offline-ops
+optionalNodeIds:
+  - evals.llm-as-judge-limits
+  - security.prompt-injection
+  - llm.reasoning-cost
+extensionEdges:
+  - fromId: workflow.checkpoint-durability
+    toId: workflow.hitl-idempotency
+    kind: recommended

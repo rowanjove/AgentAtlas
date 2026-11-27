@@ -1,0 +1,514 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+
+  /* ── Palette: Light ── */
+  --atlas-bg-light: #F7F8FA;
+  --atlas-panel-light: #FFFFFF;
+  --atlas-panel-sec-light: #EEF1F5;
+  --atlas-panel-hover-light: #F2F4F8;
+  --atlas-border-light: #E3E6EB;
+  --atlas-border-strong-light: #CFD5DF;
+  --atlas-text-light: #171B22;
+  --atlas-text-sec-light: #475162;
+  --atlas-text-muted-light: #646F82;
+  --atlas-primary-light: #315DB5;
+  --atlas-primary-hover-light: #284E9A;
+  --atlas-primary-active-light: #214284;
+  --atlas-selected-bg-light: #EAF0FC;
+  --atlas-on-primary-light: #FFFFFF;
+  --atlas-success-light: #1F7A54;
+  --atlas-success-bg-light: #EBF7F1;
+  --atlas-warning-light: #9A630A;
+  --atlas-warning-bg-light: #FDF4E3;
+  --atlas-error-light: #C0393E;
+  --atlas-error-bg-light: #FDECEC;
+  --atlas-info-light: #2B6CB0;
+  --atlas-info-bg-light: #EBF4FD;
+
+  /* ── Palette: Dark ── */
+  --atlas-bg-dark: #111317;
+  --atlas-panel-dark: #181B20;
+  --atlas-panel-sec-dark: #20242B;
+  --atlas-panel-hover-dark: #262B34;
+  --atlas-border-dark: #2B3039;
+  --atlas-border-strong-dark: #3A414E;
+  --atlas-text-dark: #EEF1F6;
+  --atlas-text-sec-dark: #B8C1CF;
+  --atlas-text-muted-dark: #8E99AA;
+  --atlas-primary-dark: #84A6EF;
+  --atlas-primary-hover-dark: #9BB7F4;
+  --atlas-primary-active-dark: #6F95EA;
+  --atlas-selected-bg-dark: #25334E;
+  --atlas-on-primary-dark: #0E1525;
+  --atlas-success-dark: #5DC296;
+  --atlas-success-bg-dark: #162C23;
+  --atlas-warning-dark: #E2B45E;
+  --atlas-warning-bg-dark: #2D2414;
+  --atlas-error-dark: #F08387;
+  --atlas-error-bg-dark: #321B1D;
+  --atlas-info-dark: #7AB3F2;
+  --atlas-info-bg-dark: #19293D;
+
+  /* ── Active Semantic Color Tokens (Light default) ── */
+  --bg: var(--atlas-bg-light);
+  --panel: var(--atlas-panel-light);
+  --panel-sec: var(--atlas-panel-sec-light);
+  --panel-hover: var(--atlas-panel-hover-light);
+  --border: var(--atlas-border-light);
+  --border-strong: var(--atlas-border-strong-light);
+  --text: var(--atlas-text-light);
+  --text-sec: var(--atlas-text-sec-light);
+  --text-muted: var(--atlas-text-muted-light);
+  --primary: var(--atlas-primary-light);
+  --primary-hover: var(--atlas-primary-hover-light);
+  --primary-active: var(--atlas-primary-active-light);
+  --selected-bg: var(--atlas-selected-bg-light);
+  --on-primary: var(--atlas-on-primary-light);
+  --success: var(--atlas-success-light);
+  --success-bg: var(--atlas-success-bg-light);
+  --warning: var(--atlas-warning-light);
+  --warning-bg: var(--atlas-warning-bg-light);
+  --error: var(--atlas-error-light);
+  --error-bg: var(--atlas-error-bg-light);
+  --info: var(--atlas-info-light);
+  --info-bg: var(--atlas-info-bg-light);
+
+  /* ── Typography Tokens (Offline-first sharp CJK + Latin stack) ── */
+  --font-sans: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, ui-monospace, monospace;
+  --reader-width: 760px;
+  --reader-font-size: 16px;
+
+  /* ── Spacing Scale (4px base) ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ── Radius Tokens ── */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* ── Shadow Tokens ── */
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-sm: 0 2px 6px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 8px 24px rgba(16, 24, 40, 0.10);
+  --shadow-lg: 0 18px 44px rgba(16, 24, 40, 0.16);
+
+  /* ── Motion Tokens ── */
+  --duration-instant: 90ms;
+  --duration-fast: 140ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Z-Index & Layout Tokens ── */
+  --z-sticky: 20;
+  --z-drawer: 30;
+  --z-popover: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+  --topbar-height: 48px;
+  --sidebar-width: 216px;
+  --sidebar-collapsed-width: 56px;
+
+  /* ── Syntax Highlight Tokens (Light) ── */
+  --hljs-comment: #687382;
+  --hljs-keyword: #9E2A55;
+  --hljs-string: #1A6E43;
+  --hljs-number: #2359A8;
+  --hljs-title: #5239B8;
+  --hljs-type: #945B0A;
+  --hljs-attr: #214F93;
+
+  accent-color: var(--primary);
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--atlas-bg-dark);
+    --panel: var(--atlas-panel-dark);
+    --panel-sec: var(--atlas-panel-sec-dark);
+    --panel-hover: var(--atlas-panel-hover-dark);
+    --border: var(--atlas-border-dark);
+    --border-strong: var(--atlas-border-strong-dark);
+    --text: var(--atlas-text-dark);
+    --text-sec: var(--atlas-text-sec-dark);
+    --text-muted: var(--atlas-text-muted-dark);
+    --primary: var(--atlas-primary-dark);
+    --primary-hover: var(--atlas-primary-hover-dark);
+    --primary-active: var(--atlas-primary-active-dark);
+    --selected-bg: var(--atlas-selected-bg-dark);
+    --on-primary: var(--atlas-on-primary-dark);
+    --success: var(--atlas-success-dark);
+    --success-bg: var(--atlas-success-bg-dark);
+    --warning: var(--atlas-warning-dark);
+    --warning-bg: var(--atlas-warning-bg-dark);
+    --error: var(--atlas-error-dark);
+    --error-bg: var(--atlas-error-bg-dark);
+    --info: var(--atlas-info-dark);
+    --info-bg: var(--atlas-info-bg-dark);
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.28);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.32);
+    --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.42);
+    --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.56);
+    --hljs-comment: #8B94A3;
+    --hljs-keyword: #F47A74;
+    --hljs-string: #76DF8A;
+    --hljs-number: #7FB8FF;
+    --hljs-title: #C9A4FF;
+    --hljs-type: #F2AD63;
+    --hljs-attr: #8CBDFC;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: var(--atlas-bg-dark);
+  --panel: var(--atlas-panel-dark);
+  --panel-sec: var(--atlas-panel-sec-dark);
+  --panel-hover: var(--atlas-panel-hover-dark);
+  --border: var(--atlas-border-dark);
+  --border-strong: var(--atlas-border-strong-dark);
+  --text: var(--atlas-text-dark);
+  --text-sec: var(--atlas-text-sec-dark);
+  --text-muted: var(--atlas-text-muted-dark);
+  --primary: var(--atlas-primary-dark);
+  --primary-hover: var(--atlas-primary-hover-dark);
+  --primary-active: var(--atlas-primary-active-dark);
+  --selected-bg: var(--atlas-selected-bg-dark);
+  --on-primary: var(--atlas-on-primary-dark);
+  --success: var(--atlas-success-dark);
+  --success-bg: var(--atlas-success-bg-dark);
+  --warning: var(--atlas-warning-dark);
+  --warning-bg: var(--atlas-warning-bg-dark);
+  --error: var(--atlas-error-dark);
+  --error-bg: var(--atlas-error-bg-dark);
+  --info: var(--atlas-info-dark);
+  --info-bg: var(--atlas-info-bg-dark);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.42);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.56);
+  --hljs-comment: #8B94A3;
+  --hljs-keyword: #F47A74;
+  --hljs-string: #76DF8A;
+  --hljs-number: #7FB8FF;
+  --hljs-title: #C9A4FF;
+  --hljs-type: #F2AD63;
+  --hljs-attr: #8CBDFC;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+body,
+#root {
+  font-size: 14px;
+}
+
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Native <dialog> containment rules per modern-web-guidance */
+dialog:modal {
+  overscroll-behavior: contain;
+  background-color: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  max-width: min(640px, 94vw);
+  width: 100%;
+  margin: 8vh auto auto;
+  box-shadow: var(--shadow-lg);
+}
+
+dialog::backdrop {
+  background: rgba(12, 15, 22, 0.52);
+  backdrop-filter: blur(2px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+code,
+pre,
+kbd,
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Selected tab underline indicator (shape + color, never color alone) */
+[role="tab"][aria-selected="true"] {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:root[data-reduced-motion="true"] *,
+:root[data-reduced-motion="true"] *::before,
+:root[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Editorial technical prose typography */
+.atlas-prose {
+  font-size: var(--reader-font-size);
+  line-height: 1.78;
+  color: var(--text);
+  letter-spacing: -0.005em;
+  word-break: break-word;
+}
+
+.atlas-prose > :first-child {
+  margin-top: 0;
+}
+
+.atlas-prose h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  margin-top: 2.35rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 72px;
+}
+
+.atlas-prose h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.65rem;
+  margin-bottom: 0.55rem;
+  scroll-margin-top: 72px;
+}
+
+.atlas-prose h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
+.atlas-prose p {
+  margin: 0.9rem 0;
+}
+
+.atlas-prose ul,
+.atlas-prose ol {
+  margin: 0.7rem 0;
+  padding-left: 1.45rem;
+}
+
+.atlas-prose ul {
+  list-style-type: disc;
+}
+
+.atlas-prose ol {
+  list-style-type: decimal;
+}
+
+.atlas-prose li {
+  margin: 0.35rem 0;
+}
+
+.atlas-prose blockquote {
+  margin: 1.15rem 0;
+  padding: 0.65rem 1rem;
+  border-left: 2.5px solid var(--primary);
+  background: var(--panel-sec);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-sec);
+  font-size: 0.94em;
+}
+
+.atlas-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.9em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.atlas-prose th,
+.atlas-prose td {
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 0.55rem 0.8rem;
+  text-align: left;
+}
+
+.atlas-prose th {
+  background: var(--panel-sec);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.atlas-prose :not(pre) > code {
+  background: var(--panel-sec);
+  border: 1px solid var(--border);
+  padding: 0.1rem 0.38rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.86em;
+  color: var(--text);
+}
+
+.atlas-prose pre {
+  margin: 0;
+  padding: 0.9rem 1.05rem;
+  overflow-x: auto;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  background: var(--panel-sec);
+  color: var(--text);
+}
+
+/* Isolate Mermaid diagrams from .atlas-prose rules */
+.atlas-mermaid p {
+  margin: 0 !important;
+  line-height: 1.35 !important;
+}
+
+.atlas-mermaid svg {
+  display: block;
+  max-width: none;
+}
+
+.atlas-mermaid foreignObject {
+  overflow: visible;
+}
+
+/* React Flow surface & control adaptation */
+.react-flow__controls {
+  box-shadow: var(--shadow-sm) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  overflow: hidden;
+}
+
+.react-flow__controls button {
+  background: var(--panel) !important;
+  color: var(--text-sec) !important;
+  border-color: var(--border) !important;
+}
+
+.react-flow__controls button:hover {
+  background: var(--panel-sec) !important;
+  color: var(--text) !important;
+}
+
+.react-flow__minimap {
+  background: var(--panel) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+mark {
+  background-color: color-mix(in srgb, var(--warning) 22%, transparent);
+  color: var(--text);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--hljs-comment);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: var(--hljs-keyword);
+}
+
+.hljs-string,
+.hljs-doctag,
+.hljs-regexp {
+  color: var(--hljs-string);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable {
+  color: var(--hljs-number);
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: var(--hljs-title);
+}
+
+.hljs-type,
+.hljs-class .hljs-title,
+.hljs-built_in {
+  color: var(--hljs-type);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-property {
+  color: var(--hljs-attr);
+}

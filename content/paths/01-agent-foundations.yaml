@@ -1,0 +1,48 @@
+id: agent-foundations
+title: Agent 基础入门路径
+enTitle: Agent Foundations Path
+goal: 建立清晰的工程分类认知，区分 Chatbot、确定性工作流与自治 Agent，并理解工具调用与停止条件。
+audience: 初学 AI Agent 工程的开发者
+estimatedHours: 4
+stages:
+  - id: stage-llm
+    title: 1. LLM 工程前提
+    description: 理解 Token 计费、上下文窗口与结构化输出契约。
+    nodeIds:
+      - llm.tokens-context
+      - llm.sampling-decoding
+      - llm.structured-output
+  - id: stage-core
+    title: 2. Agent 核心机制
+    description: 明确 Agent 与工作流边界，掌握执行循环与停止条件。
+    nodeIds:
+      - agent.taxonomy
+      - agent.loop
+      - agent.state-environment
+      - agent.stop-conditions
+  - id: stage-tools-patterns
+    title: 3. 工具与基础模式
+    description: 理解 Function Calling 契约及 ReAct、提示链与路由模式。
+    nodeIds:
+      - tools.function-calling
+      - patterns.prompt-chaining-routing
+      - patterns.react
+requiredNodeIds:
+  - llm.tokens-context
+  - llm.structured-output
+  - agent.taxonomy
+  - agent.loop
+  - agent.stop-conditions
+  - tools.function-calling
+  - patterns.react
+optionalNodeIds:
+  - llm.sampling-decoding
+  - agent.state-environment
+  - patterns.prompt-chaining-routing
+extensionEdges:
+  - fromId: agent.loop
+    toId: patterns.react
+    kind: recommended
+  - fromId: tools.function-calling
+    toId: tools.mcp-architecture
+    kind: extension

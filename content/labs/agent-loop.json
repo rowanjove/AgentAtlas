@@ -1,0 +1,19 @@
+{
+  "id": "agent-loop",
+  "title": "Agent Loop 执行循环实验室",
+  "enTitle": "Agent Loop Simulator",
+  "category": "Agent Core",
+  "summary": "观察模型决策、工具调用、环境观测与停止条件如何构成可控的自治闭环，并演练步数熔断与工具超时。",
+  "observableVars": ["step", "tool_calls", "stop_reason", "simulatedTokens"],
+  "controls": ["maxSteps", "goal", "seed", "faultInjection"],
+  "relatedNodeIds": ["agent.loop", "agent.stop-conditions"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "maxSteps": 4,
+    "goal": "核查本地仓库 package.json 依赖并生成摘要"
+  },
+  "faultOptions": [
+    { "id": "no-stop-condition", "label": "缺少终止信号 (触发 maxSteps 熔断)", "description": "模拟模型始终未发出收敛信号直到达到最大步数" },
+    { "id": "tool-timeout", "label": "工具执行超时 (ETIMEDOUT)", "description": "模拟第 1 轮工具调用超过 5000ms 触发安全中止" }
+  ]
+}

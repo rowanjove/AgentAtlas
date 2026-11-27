@@ -1,0 +1,18 @@
+{
+  "id": "workflow",
+  "title": "Durable Workflow 与检查点恢复实验室",
+  "enTitle": "Durable Workflow & Checkpoint Lab",
+  "category": "Workflow & Orchestration",
+  "summary": "演练确定性工作流中的 Checkpoint 持久化、故障崩溃断点恢复、Human-in-the-Loop 审批中断与幂等写入。",
+  "observableVars": ["checkpointId", "retries", "approved", "idempotencyKey", "published"],
+  "controls": ["autoApprove", "seed", "faultInjection"],
+  "relatedNodeIds": ["workflow.checkpoint-durability", "workflow.hitl-idempotency"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "autoApprove": true
+  },
+  "faultOptions": [
+    { "id": "transient-crash", "label": "节点崩溃并从 Checkpoint 恢复", "description": "跳过已完成步骤直接从 cp-1 恢复执行" },
+    { "id": "reject-approval", "label": "人工审批拒绝 (HITL Interrupt)", "description": "在破坏性写操作前中止工作流" }
+  ]
+}

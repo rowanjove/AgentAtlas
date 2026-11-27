@@ -1,0 +1,56 @@
+id: agent-architect
+title: Agent 架构师路径
+enTitle: Agent Architect Path
+goal: 根据可靠性、成本、权限与复杂度约束做出正确的系统架构决策，避免盲目上多 Agent。
+audience: 系统架构师与技术负责人
+estimatedHours: 7
+stages:
+  - id: stage-patterns-context
+    title: 1. 编排模式与上下文架构
+    description: 在工作流与自治循环间做精确权衡，严控 Context Rot。
+    nodeIds:
+      - agent.taxonomy
+      - patterns.orchestrator-workers
+      - patterns.evaluator-optimizer
+      - context.engineering-principles
+      - context.budget-compaction
+      - context.state-vs-context
+  - id: stage-multi-harness
+    title: 2. 多智能体边界与 Harness 底座
+    description: 评估多 Agent 成本边界、A2A 互操作与长程沙箱。
+    nodeIds:
+      - multi-agent.roles-handoffs
+      - multi-agent.a2a-protocol
+      - multi-agent.cost-boundaries
+      - harness.runtime-sandbox
+  - id: stage-governance
+    title: 3. 安全、评估与框架选型
+    description: 建立最小权限安全模型与客观评估基准。
+    nodeIds:
+      - security.prompt-injection
+      - security.least-privilege-approval
+      - evals.llm-as-judge-limits
+      - frameworks.landscape-selection
+requiredNodeIds:
+  - agent.taxonomy
+  - patterns.orchestrator-workers
+  - context.budget-compaction
+  - context.state-vs-context
+  - multi-agent.cost-boundaries
+  - harness.runtime-sandbox
+  - security.least-privilege-approval
+  - frameworks.landscape-selection
+optionalNodeIds:
+  - patterns.evaluator-optimizer
+  - context.engineering-principles
+  - multi-agent.roles-handoffs
+  - multi-agent.a2a-protocol
+  - security.prompt-injection
+  - evals.llm-as-judge-limits
+extensionEdges:
+  - fromId: multi-agent.roles-handoffs
+    toId: multi-agent.cost-boundaries
+    kind: recommended
+  - fromId: harness.runtime-sandbox
+    toId: harness.budget-recovery
+    kind: extension

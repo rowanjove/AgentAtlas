@@ -1,0 +1,18 @@
+{
+  "id": "harness-engineering",
+  "title": "Agent Harness 沙箱与测试反馈实验室",
+  "enTitle": "Harness Sandbox & Verify Loop Lab",
+  "category": "Harness Engineering",
+  "summary": "体验 Coding Agent 外围运行底座的权限门禁、工作区路径边界防护与自动测试驱动迭代。",
+  "observableVars": ["sandbox", "targetPath", "testsPassed", "blocked"],
+  "controls": ["sandboxMode", "seed", "faultInjection"],
+  "relatedNodeIds": ["harness.runtime-sandbox", "coding.patch-test-review"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "sandboxMode": "workspace-write"
+  },
+  "faultOptions": [
+    { "id": "escape-sandbox", "label": "越权写入工作区外路径", "description": "触发沙箱路径安全拦截并拒绝写入" },
+    { "id": "test-fail-loop", "label": "首次单测失败后自动修复", "description": "利用真实测试栈信息引导模型二次修复" }
+  ]
+}

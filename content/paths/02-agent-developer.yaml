@@ -1,0 +1,50 @@
+id: agent-developer
+title: Agent 开发实战路径
+enTitle: Agent Developer Path
+goal: 掌握结构化工具协议、RAG 检索、工作流编排与回归测试，独立实现可验证的小型 Agent 系统。
+audience: 一线应用与后端开发工程师
+estimatedHours: 6
+stages:
+  - id: stage-contracts
+    title: 1. 协议与工具契约
+    description: 掌握 Schema 校验与 MCP 标准化工具接入。
+    nodeIds:
+      - llm.structured-output
+      - tools.function-calling
+      - tools.schema-validation
+      - tools.mcp-architecture
+      - tools.mcp-primitives
+  - id: stage-knowledge
+    title: 2. 检索与上下文工程
+    description: 掌控 RAG 检索质量和注意力预算。
+    nodeIds:
+      - context.engineering-principles
+      - rag.fundamentals-chunking
+      - rag.hybrid-rerank
+  - id: stage-build-verify
+    title: 3. 编排与测试闭环
+    description: 构建可控状态机并用 Evals 验证行为。
+    nodeIds:
+      - workflow.dag-state-machine
+      - evals.datasets-metrics
+      - frameworks.landscape-selection
+requiredNodeIds:
+  - llm.structured-output
+  - tools.function-calling
+  - tools.schema-validation
+  - tools.mcp-architecture
+  - context.engineering-principles
+  - rag.fundamentals-chunking
+  - workflow.dag-state-machine
+  - evals.datasets-metrics
+optionalNodeIds:
+  - tools.mcp-primitives
+  - rag.hybrid-rerank
+  - frameworks.landscape-selection
+extensionEdges:
+  - fromId: tools.schema-validation
+    toId: tools.mcp-architecture
+    kind: recommended
+  - fromId: evals.datasets-metrics
+    toId: evals.tracing-observability
+    kind: extension

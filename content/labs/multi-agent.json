@@ -1,0 +1,17 @@
+{
+  "id": "multi-agent",
+  "title": "Single vs Multi-Agent 协作权衡实验室",
+  "enTitle": "Multi-Agent Topology & Cost Lab",
+  "category": "Multi-Agent Systems",
+  "summary": "对比 Single Agent 与 Supervisor/Parallel 多 Agent 在交接次数、上下文损耗与模拟 Token 成本上的真实差异。",
+  "observableVars": ["topology", "handoffs", "contextLossDetected", "simulatedTotalTokens"],
+  "controls": ["topology", "seed", "faultInjection"],
+  "relatedNodeIds": ["multi-agent.roles-handoffs", "multi-agent.cost-boundaries"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "topology": "supervisor"
+  },
+  "faultOptions": [
+    { "id": "handoff-context-loss", "label": "Handoff 简报遗漏核心约束", "description": "演示跨 Agent 交接丢失上下文导致的输出冲突" }
+  ]
+}

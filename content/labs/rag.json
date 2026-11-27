@@ -1,0 +1,20 @@
+{
+  "id": "rag",
+  "title": "RAG 分块、混合检索与重排实验室",
+  "enTitle": "RAG Retrieval & Reranking Lab",
+  "category": "RAG & Memory",
+  "summary": "对比不同 Chunk 大小与检索策略（BM25 / 向量 / 混合+Rerank）对引用真实性的影响（基于演示语料）。",
+  "observableVars": ["chunkSize", "strategy", "candidates", "selected", "citations"],
+  "controls": ["query", "chunkSize", "strategy", "topK", "seed", "faultInjection"],
+  "relatedNodeIds": ["rag.fundamentals-chunking", "rag.hybrid-rerank"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "query": "为什么中文搜索不能只依赖 FTS5 trigram？",
+    "chunkSize": 400,
+    "strategy": "hybrid-rerank",
+    "topK": 3
+  },
+  "faultOptions": [
+    { "id": "retrieval-miss", "label": "检索未命中关键片段", "description": "验证证据不足时模型是否拒答而非编造引用" }
+  ]
+}

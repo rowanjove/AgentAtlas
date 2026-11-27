@@ -1,0 +1,30 @@
+{
+  "name": "agent-atlas",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "description": "Local-first AI Agent Engineering learning, knowledge, simulation, and research workbench",
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @agent-atlas/server dev",
+    "dev:web": "pnpm --filter @agent-atlas/web dev",
+    "build": "pnpm -r --workspace-concurrency=1 build",
+    "build:portable": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-tauri-portable.ps1",
+    "start": "node apps/server/dist/index.js",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "validate:content": "tsx scripts/validate-content.ts",
+    "bench": "tsx scripts/benchmark.ts",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  }
+}

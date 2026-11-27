@@ -1,0 +1,19 @@
+{
+  "id": "function-calling",
+  "title": "Function Calling 与 Schema 校验实验室",
+  "enTitle": "Function Calling & Schema Validation Lab",
+  "category": "Tools & Protocols",
+  "summary": "演练 JSON Schema 参数生成、边界校验失败回传以及模型自修正重试闭环。",
+  "observableVars": ["schema", "arguments", "retries", "result", "error"],
+  "controls": ["query", "limit", "seed", "faultInjection"],
+  "relatedNodeIds": ["tools.function-calling", "tools.schema-validation"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "query": "MCP architecture",
+    "limit": 5
+  },
+  "faultOptions": [
+    { "id": "missing-required", "label": "缺少必填字段 (query)", "description": "触发 Schema 校验失败并回传错误让模型自修正" },
+    { "id": "type-mismatch", "label": "字段类型错误 (limit='five')", "description": "演示强类型 Schema 拦截至关重要" }
+  ]
+}

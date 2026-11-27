@@ -1,0 +1,324 @@
+- id: openai-agents-sdk
+  name: OpenAI Agents SDK
+  category: sdk-framework
+  positioning: 轻量级 Python 多 Agent 编排 SDK，以 Agent、Handoff、Tool 与 Guardrails 为核心原语。
+  architecture: 事件循环驱动 + 显式 Handoff 交接 + 内置 Tracing 钩子。
+  controlFlow: Agent Loop（支持工具调用与 Agent 间控制权转移）
+  statePersistence: 内置 Session 接口支持 SQLite/自定义后端扩展，核心偏向轻量无状态运行。
+  toolIntegration: Python 函数装饰器自动推导 JSON Schema + 原生支持 MCP Server。
+  suitableFor:
+    - 快速搭建轻量工具 Agent 与客服/分诊式 Handoff 流程
+    - 需要标准 OpenAI-compatible 模型接口的项目
+  notSuitableFor:
+    - 需要复杂长程 DAG 状态机图编辑与内置时间旅行回放的工业编排
+  complexity: low
+  costTradeoffs: 运行时开销极低；多 Agent Handoff 会增加上下文重传 Token 成本。
+  deploymentPrereqs: Python 3.9+；支持切换自定义 OpenAI-compatible Base URL。
+  license: MIT
+  version: "0.x (2025-2026)"
+  maintenanceStatus: 活跃维护 (OpenAI 官方)
+  verifiedAt: "2026-11-26"
+  officialUrl: https://github.com/openai/openai-agents-python
+  sourceIds: [openai.agents-sdk]
+  relatedNodeIds: [multi-agent.roles-handoffs, frameworks.landscape-selection]
+
+- id: langgraph
+  name: LangGraph
+  category: orchestration
+  positioning: 基于有向状态图（StateGraph）的可持久化、可中断 Agent 与工作流编排框架。
+  architecture: 显式共享 State + Node 函数 + Conditional Edges + Checkpointer 持久化层。
+  controlFlow: 有环/无环状态图，支持并行扇出与人类审批中断（interrupt）。
+  statePersistence: 原生 Checkpointer（Memory / SQLite / Postgres），支持断点恢复与时间旅行调试。
+  toolIntegration: 兼容 LangChain Tools、自定义函数及 MCP 适配器。
+  suitableFor:
+    - 长程运行、需要人工审批中断（HITL）与崩溃恢复的生产工作流
+    - 需要精确控制确定性与自治边界混合的系统
+  notSuitableFor:
+    - 仅需几十行脚本的一次性简单问答或原型验证
+  complexity: medium
+  costTradeoffs: 前期状态建模心智成本较高，但显著降低生产失控与重复执行成本。
+  deploymentPrereqs: Python 或 TypeScript 运行时；SQLite/Postgres 持久化可选。
+  license: MIT
+  version: "0.x / 1.x"
+  maintenanceStatus: 活跃维护 (LangChain)
+  verifiedAt: "2026-11-26"
+  officialUrl: https://github.com/langchain-ai/langgraph
+  sourceIds: [langchain.langgraph]
+  relatedNodeIds: [workflow.dag-state-machine, workflow.checkpoint-durability]
+
+- id: pydantic-ai
+  name: PydanticAI
+  category: sdk-framework
+  positioning: 强调 Python 类型安全、依赖注入与 Pydantic 结构化校验的生产向 Agent 框架。
+  architecture: 类型泛型 Agent[Deps, Output] + 依赖注入上下文 + 结构化校验重试循环。
+  controlFlow: 基于异步循环与显式 Graph 支持，优先保障类型与输出契约。
+  statePersistence: 消息历史序列化 + 自定义依赖状态注入。
+  toolIntegration: 基于函数签名与 Pydantic Model 自动生成并校验 Tool Schema。
+  suitableFor:
+    - 已有强类型 Python/FastAPI 工程体系的团队
+    - 对结构化输出可靠性与可测试性要求极高的后端服务
+  notSuitableFor:
+    - 依赖可视化拖拽低代码编排的非工程团队
+  complexity: low
+  costTradeoffs: 结构化校验失败会自动触发重试消耗额外 Token，但大幅减少下游解析异常。
+  deploymentPrereqs: Python 3.9+；支持 OpenAI/Anthropic/Gemini/Ollama 等多种模型。
+  license: MIT
+  version: "latest"
+  maintenanceStatus: 活跃维护 (Pydantic 团队)
+  verifiedAt: "2026-11-26"
+  officialUrl: https://ai.pydantic.dev/
+  sourceIds: [pydantic.ai]
+  relatedNodeIds: [llm.structured-output, tools.schema-validation]
+
+- id: hf-smolagents
+  name: Hugging Face smolagents
+  category: sdk-framework
+  positioning: 极简代码的开源 Agent 库，主打 CodeAgent（直接生成并沙箱执行 Python 代码动作）。
+  architecture: 极小核心抽象（约千行代码）+ CodeAgent / ToolCallingAgent 双模式。
+  controlFlow: Think -> Code/Tool Act -> Observe 迭代循环。
+  statePersistence: 轻量内存步骤日志（Step Logs），支持回放与调试。
+  toolIntegration: Python Tool 类与 Hugging Face Hub 工具/MCP 集成。
+  suitableFor:
+    - 教学实验、科研原型、需要用代码组合多步逻辑与数据处理的任务
+  notSuitableFor:
+    - 未配置严格容器/远程沙箱（如 E2B/Docker）的生产不可信代码执行
+  complexity: low
+  costTradeoffs: CodeAgent 常能用更少模型轮次完成组合操作，但安全边界完全依赖沙箱隔离。
+  deploymentPrereqs: Python 3.10+；生产执行代码需配安全沙箱环境。
+  license: Apache-2.0
+  version: "1.x"
+  maintenanceStatus: 活跃维护 (Hugging Face)
+  verifiedAt: "2026-11-26"
+  officialUrl: https://github.com/huggingface/smolagents
+  sourceIds: [hf.smolagents]
+  relatedNodeIds: [agent.loop, harness.runtime-sandbox]
+
+- id: crewai
+  name: CrewAI
+  category: orchestration
+  positioning: 以角色扮演（Role/Goal/Backstory）与 Flows 编排为核心的多 Agent 协作框架。
+  architecture: Crew（自主角色协作）与 Flows（事件驱动确定性工作流）双层结构。
+  controlFlow: Sequential / Hierarchical 任务委派与 Flow 状态触发。
+  statePersistence: 内置基础任务记忆与 Flow 状态持久化能力。
+  toolIntegration: 自定义 Python 工具与生态内置工具集。
+  suitableFor:
+    - 按职责分工明确的内容研究、信息整理与多步骤团队模拟
+  notSuitableFor:
+    - 需要极细粒度底层 Token 预算与协议级精细控制的系统
+  complexity: medium
+  costTradeoffs: 多角色对话与委派可能产生较高 Token 开销，建议搭配 Flows 约束控制流。
+  deploymentPrereqs: Python 3.10+；无强制云端依赖。
+  license: MIT
+  version: "latest"
+  maintenanceStatus: 活跃维护
+  verifiedAt: "2026-11-26"
+  officialUrl: https://github.com/crewAIInc/crewAI
+  sourceIds: [crewai.docs]
+  relatedNodeIds: [multi-agent.roles-handoffs, multi-agent.cost-boundaries]
+
+- id: google-adk
+  name: Google Agent Development Kit (ADK)
+  category: sdk-framework
+  positioning: 面向模块化多 Agent 与原生工具/协议（MCP/A2A）集成的开源开发套件。
+  architecture: 层次化 Agent 树（Sequential/Parallel/Loop Agents）+ Session/Artifact 服务。
+  controlFlow: 组合确定性工作流 Agent 与 LLM 推理 Agent。
+  statePersistence: Session State 与 Artifact 抽象接口（内存或持久化后端）。
+  toolIntegration: Python 函数工具、MCP、OpenAPI 与 A2A 互操作支持。
+  suitableFor:
+    - 需要同时组合确定性流程与动态子 Agent 的模块化工程系统
+  notSuitableFor:
+    - 纯前端浏览器无 Python/后端运行时的静态场景
+  complexity: medium
+  costTradeoffs: 明确划分 Workflow Agent 与 LLM Agent 有助于控制无效推理成本。
+  deploymentPrereqs: Python 3.9+（官方亦有其他语言生态规划，具体以当前文档为准）。
+  license: Apache-2.0
+  version: "latest"
+  maintenanceStatus: 活跃维护 (Google)
+  verifiedAt: "2026-11-26"
+  officialUrl: https://google.github.io/adk-docs/
+  sourceIds: [google.adk]
+  relatedNodeIds: [multi-agent.a2a-protocol, frameworks.landscape-selection]
+
+- id: mcp-protocol
+  name: Model Context Protocol (MCP)
+  category: protocol
+  positioning: 连接 AI Host/Client 与外部工具、数据资源及提示模板的标准化开放协议。
+  architecture: 基于 JSON-RPC 2.0，区分 stdio 本地进程传输与 Streamable HTTP 远程传输。
+  controlFlow: 能力协商 -> 工具/资源发现 -> 受 Host 授权调用。
+  statePersistence: 会话级能力协商与通知订阅；业务状态由 Server 自行管理。
+  toolIntegration: 提供 Tools（动作）、Resources（只读上下文）、Prompts（模板）三大原语。
+  suitableFor:
+    - 跨 IDE/桌面应用复用本地文件系统、数据库与 API 工具服务
+  notSuitableFor:
+    - 替代进程内毫秒级高频函数调用（存在进程间通信序列化开销）
+  complexity: medium
+  costTradeoffs: 消除 M×N 工具适配重复工作；大量工具 Schema 注入需配合按需加载控制上下文膨胀。
+  deploymentPrereqs: Node.js / Python / 任意支持 JSON-RPC 的运行时。
+  license: MIT
+  version: "2025-03-26 Spec"
+  maintenanceStatus: 活跃维护 (Anthropic & 社区)
+  verifiedAt: "2026-11-26"
+  officialUrl: https://modelcontextprotocol.io/
+  sourceIds: [mcp.spec]
+  relatedNodeIds: [tools.mcp-architecture, tools.mcp-primitives]
+
+- id: a2a-protocol
+  name: Agent2Agent (A2A) Protocol
+  category: protocol
+  positioning: 跨独立运行环境的多 Agent 发现、任务委派与流式成果交换开放协议。
+  architecture: HTTP + JSON-RPC + SSE；通过 /.well-known/agent.json 暴露 Agent Card。
+  controlFlow: 异步 Task 状态机（submitted -> working -> input-required -> completed/failed）。
+  statePersistence: 由各自 Agent 服务端维护 Task 状态与 Artifact，避免暴露内部私有状态。
+  toolIntegration: 与 MCP 互补：MCP 管“Agent 连工具”，A2A 管“Agent 连 Agent”。
+  suitableFor:
+    - 跨团队、跨组织或异构技术栈部署的独立 Agent 间协作
+  notSuitableFor:
+    - 同一进程内高频率、强共享内存状态的简单子任务拆分
+  complexity: high
+  costTradeoffs: 引入网络与异步任务状态机复杂度，但换取异构 Agent 边界解耦。
+  deploymentPrereqs: HTTP 服务端点与身份认证机制。
+  license: Apache-2.0
+  version: "latest"
+  maintenanceStatus: 活跃维护
+  verifiedAt: "2026-11-26"
+  officialUrl: https://a2a-protocol.org/
+  sourceIds: [a2a.spec]
+  relatedNodeIds: [multi-agent.a2a-protocol, multi-agent.cost-boundaries]
+
+- id: langfuse
+  name: Langfuse
+  category: observability
+  positioning: 开源 LLM 工程可观测性、Trace 分析、Prompt 版本管理与评估平台。
+  architecture: Trace / Span / Generation 树形数据模型 + 异步批处理上报。
+  controlFlow: 通过 SDK Decorator 或 OpenTelemetry Collector 旁路采集，不阻塞主链路。
+  statePersistence: 持久化完整输入输出、Token 计数、成本估算与人工评分。
+  toolIntegration: 原生支持 OpenAI SDK、LangGraph、PydanticAI、OpenTelemetry 等。
+  suitableFor:
+    - 生产环境线上故障排查、延迟/成本归因与数据集沉淀
+  notSuitableFor:
+    - 离线极简个人学习环境（若不想部署 PostgreSQL/ClickHouse 服务）
+  complexity: medium
+  costTradeoffs: 自托管需维护数据库栈；生产可观测收益远高于埋点开销。
+  deploymentPrereqs: 云服务或自托管 Docker Compose（PostgreSQL + ClickHouse）。
+  license: MIT (核心开源；企业版特性另含商业许可)
+  version: "v3.x"
+  maintenanceStatus: 活跃维护
+  verifiedAt: "2026-11-26"
+  officialUrl: https://langfuse.com/docs
+  sourceIds: [langfuse.docs]
+  relatedNodeIds: [evals.tracing-observability, evals.datasets-metrics]
+
+- id: otel-genai
+  name: OpenTelemetry GenAI SemConv
+  category: observability
+  positioning: 厂商中立的生成式 AI 与 Agent 遥测语义约定标准。
+  architecture: 基于标准 OpenTelemetry Traces / Metrics / Events 定义 gen_ai.* 属性规范。
+  controlFlow: 统一 Span 属性命名（模型名、token 用量、工具调用、finish_reason）。
+  statePersistence: 对接任意兼容 OTLP 的后端（Jaeger、Grafana Tempo、Langfuse 等）。
+  toolIntegration: 跨语言标准，避免观测代码绑定特定 LLM 平台 SDK。
+  suitableFor:
+    - 已有 OpenTelemetry 基础设施的工程团队统一接入 Agent 监控
+  notSuitableFor:
+    - 需要开箱即用 Prompt Playground UI 的快速探索场景
+  complexity: medium
+  costTradeoffs: 规范仍在快速演进中（部分属性处于实验阶段），但长期迁移成本最低。
+  deploymentPrereqs: OpenTelemetry SDK 与 OTLP Collector。
+  license: Apache-2.0
+  version: "Experimental / Development"
+  maintenanceStatus: 活跃演进 (CNCF OpenTelemetry)
+  verifiedAt: "2026-11-26"
+  officialUrl: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+  sourceIds: [otel.genai]
+  relatedNodeIds: [evals.tracing-observability]
+
+- id: promptfoo
+  name: Promptfoo
+  category: evaluation
+  positioning: 本地优先的 LLM 提示评估、Agent 回归测试与红队安全扫描 CLI/Web 工具。
+  architecture: 声明式 YAML 测试矩阵（Prompts × Providers × Test Cases）+ 断言引擎。
+  controlFlow: 并行回放测试用例并执行确定性断言或 Model-Graded 评分。
+  statePersistence: 本地 SQLite 存储历史评估对比结果，无需云端上传。
+  toolIntegration: 支持 CI/CD 流水线门禁、OpenAI-compatible 与本地模型。
+  suitableFor:
+    - 每次修改 Prompt/工具描述前跑本地回归测试与提示注入红队检测
+  notSuitableFor:
+    - 线上实时流量监控与持久化生产 Trace 存储
+  complexity: low
+  costTradeoffs: 批量评估会产生对应模型调用成本，可通过确定性断言减少 Judge 模型花费。
+  deploymentPrereqs: Node.js CLI，可完全本地离线运行规则评估。
+  license: MIT
+  version: "latest"
+  maintenanceStatus: 活跃维护
+  verifiedAt: "2026-11-26"
+  officialUrl: https://www.promptfoo.dev/docs/intro/
+  sourceIds: [promptfoo.docs]
+  relatedNodeIds: [evals.datasets-metrics, evals.llm-as-judge-limits]
+
+- id: lm-studio
+  name: LM Studio
+  category: local-runtime
+  positioning: 桌面端本地模型管理与 OpenAI-compatible 推理服务端。
+  architecture: 基于 llama.cpp / MLX 的桌面图形界面与本地 HTTP API 服务（默认 127.0.0.1:1234）。
+  controlFlow: 本地加载 GGUF/MLX 模型并暴露 /v1/chat/completions 与 Structured Outputs。
+  statePersistence: 本地磁盘模型缓存；无状态 HTTP 推理接口。
+  toolIntegration: 支持 Tool Calling 模板与 OpenAI-compatible SDK 直接对接。
+  suitableFor:
+    - Windows/macOS 本地离线实验、隐私数据不外发与零 API 成本验证
+  notSuitableFor:
+    - 高并发多租户生产服务端集群部署
+  complexity: low
+  costTradeoffs: 零云端 API 费用，受限于本机内存/显存容量与推理吞吐。
+  deploymentPrereqs: 桌面操作系统与足够内存/显存；本地运行无需联网。
+  license: 专有免费桌面软件 (非 OSI 开源许可，个人与商业使用条款见官网)
+  version: "0.3.x"
+  maintenanceStatus: 活跃维护
+  verifiedAt: "2026-11-26"
+  officialUrl: https://lmstudio.ai/docs/app/api
+  sourceIds: [lmstudio.docs]
+  relatedNodeIds: [deployment.local-offline-ops]
+
+- id: ollama
+  name: Ollama
+  category: local-runtime
+  positioning: 开源命令行优先的本地大模型运行与模型分发引擎。
+  architecture: Go 服务包装 llama.cpp 推理后端，暴露原生 REST 及 OpenAI-compatible `/v1` 接口。
+  controlFlow: 单进程本地守护服务，按需加载/卸载模型权重。
+  statePersistence: 本地 Modelfile 与模型层缓存。
+  toolIntegration: 支持 Function Calling、JSON Mode 与 Embedding 生成。
+  suitableFor:
+    - 开发机命令行自动化、本地 RAG Embedding 与离线 Agent 原型
+  notSuitableFor:
+    - 超大规模分布式推理调度（更适合 vLLM / SGLang）
+  complexity: low
+  costTradeoffs: 轻量易用；默认并发与 KV Cache 吞吐受本地硬件限制。
+  deploymentPrereqs: Windows / Linux / macOS 本地安装。
+  license: MIT
+  version: "latest"
+  maintenanceStatus: 活跃维护
+  verifiedAt: "2026-11-26"
+  officialUrl: https://github.com/ollama/ollama
+  sourceIds: [ollama.docs]
+  relatedNodeIds: [deployment.local-offline-ops]
+
+- id: langflow
+  name: Langflow
+  category: agent-ide
+  positioning: 基于节点连线的可视化 Agent 与 RAG 流程构建与调试平台。
+  architecture: Python 后端执行引擎 + React Flow 前端画布与节点调试面板。
+  controlFlow: 可视化 DAG/组件连线编译为运行时流，支持逐节点输出预览。
+  statePersistence: SQLite/Postgres 保存流定义与运行会话历史。
+  toolIntegration: 组件化封装常见模型、向量库与 MCP Server。
+  suitableFor:
+    - 快速可视化原型演示、向非代码协作者展示数据流向
+  notSuitableFor:
+    - 复杂 Git 代码审查、精细类型系统约束及深度自定义 Harness 工程
+  complexity: medium
+  costTradeoffs: 直观降低入门门槛，但复杂分支与版本 diff 不如纯代码工程易维护。
+  deploymentPrereqs: Python 或 Docker 运行环境。
+  license: MIT
+  version: "1.x"
+  maintenanceStatus: 活跃维护
+  verifiedAt: "2026-11-26"
+  officialUrl: https://github.com/langflow-ai/langflow
+  sourceIds: [langflow.docs]
+  relatedNodeIds: [frameworks.landscape-selection]

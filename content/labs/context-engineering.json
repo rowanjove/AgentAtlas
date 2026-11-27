@@ -1,0 +1,21 @@
+{
+  "id": "context-engineering",
+  "title": "Context Budget 与上下文压缩实验室",
+  "enTitle": "Context Engineering & Compaction Lab",
+  "category": "Context Engineering",
+  "summary": "动态调节 System/History/Tool 输出估算 Token 占比，对比头部截断与结构化压缩的工程后果。",
+  "observableVars": ["budgetTokens", "rawTotal", "finalTotal", "lostInstruction"],
+  "controls": ["budgetTokens", "systemTokens", "historyTokens", "toolOutputTokens", "compressionMode", "seed", "faultInjection"],
+  "relatedNodeIds": ["context.engineering-principles", "context.budget-compaction"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "budgetTokens": 4000,
+    "systemTokens": 650,
+    "historyTokens": 1800,
+    "toolOutputTokens": 2200,
+    "compressionMode": "compact"
+  },
+  "faultOptions": [
+    { "id": "massive-tool-output", "label": "超长工具输出淹没窗口", "description": "模拟单次文件读取返回 +3200 tokens 触发预算溢出" }
+  ]
+}

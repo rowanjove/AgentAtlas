@@ -1,0 +1,18 @@
+{
+  "id": "react",
+  "title": "ReAct 推理与行动交错实验室",
+  "enTitle": "ReAct Trace Simulator",
+  "category": "Agent Design Patterns",
+  "summary": "追踪 Thought → Action → Observation 交错轨迹，观察幻觉工具与观测污染如何破坏推理可靠性。",
+  "observableVars": ["trace", "grounded", "simulatedTokens"],
+  "controls": ["question", "seed", "faultInjection"],
+  "relatedNodeIds": ["patterns.react", "security.prompt-injection"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "question": "为什么长程 Agent 需要显式 Checkpoint？"
+  },
+  "faultOptions": [
+    { "id": "hallucinated-tool", "label": "幻觉调用未注册工具", "description": "模型尝试调用不存在的 magic_db_dump 工具" },
+    { "id": "observation-pollution", "label": "Observation 间接提示注入", "description": "外部检索观测混入未过滤干扰指令" }
+  ]
+}

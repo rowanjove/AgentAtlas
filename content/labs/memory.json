@@ -1,0 +1,17 @@
+{
+  "id": "memory",
+  "title": "Agent Memory 生命周期与冲突消解实验室",
+  "enTitle": "Memory Lifecycle Simulator",
+  "category": "RAG & Memory",
+  "summary": "观察 Working Memory 抽取到 Semantic Memory 时的版本覆盖策略，以及 append-only 造成的过时事实冲突。",
+  "observableVars": ["writePolicy", "semanticStore", "conflictDetected"],
+  "controls": ["writePolicy", "seed", "faultInjection"],
+  "relatedNodeIds": ["memory.architecture-lifecycle", "context.state-vs-context"],
+  "defaultSeed": 42,
+  "defaultParams": {
+    "writePolicy": "upsert-versioned"
+  },
+  "faultOptions": [
+    { "id": "stale-conflict", "label": "过时偏好冲突未覆盖", "description": "同一用户偏好键存在多条相互矛盾记录" }
+  ]
+}

@@ -1,0 +1,27 @@
+node_modules/
+dist/
+build/
+data/
+*.tsbuildinfo
+.vite/
+test-results/
+playwright-report/
+.env
+.env.local
+.env.*
+coverage/
+*.lnk
+*.log
+.DS_Store
+Thumbs.db
+src-tauri/target/
+release/
+
+# Internal planning, PRD, and dev artifacts
+AgentAtlas_PRD_*.md
+TASKS.md
+TEST_REPORT.md
+DECISIONS.md
+图标.png
+docs/screenshots/before/
+docs/screenshots/after/

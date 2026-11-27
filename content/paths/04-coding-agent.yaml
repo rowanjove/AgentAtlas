@@ -1,0 +1,48 @@
+id: coding-agent
+title: Coding Agent 工程路径
+enTitle: Coding Agent Engineering Path
+goal: 掌握仓库级上下文设计、AGENTS.md、Agent Skills、沙箱 Harness 与补丁测试审查闭环。
+audience: 研发工具与 AI Coding 工程师
+estimatedHours: 5
+stages:
+  - id: stage-coding-context
+    title: 1. 仓库上下文与技能披露
+    description: 让 Agent 快速理解项目约定而不撑爆上下文窗口。
+    nodeIds:
+      - tools.function-calling
+      - context.engineering-principles
+      - coding.repo-context-agents-md
+      - coding.agent-skills
+  - id: stage-harness-verify
+    title: 2. Harness 沙箱与测试驱动修复
+    description: 通过沙箱隔离、补丁生成、单测反馈与跨会话交接保证代码质量。
+    nodeIds:
+      - harness.runtime-sandbox
+      - harness.budget-recovery
+      - coding.patch-test-review
+      - security.least-privilege-approval
+  - id: stage-eval
+    title: 3. 基准评估与推理成本
+    description: 理解 SWE-bench 等真实仓库基准与模型分工策略。
+    nodeIds:
+      - llm.reasoning-cost
+      - evals.datasets-metrics
+requiredNodeIds:
+  - tools.function-calling
+  - context.engineering-principles
+  - coding.repo-context-agents-md
+  - coding.agent-skills
+  - harness.runtime-sandbox
+  - coding.patch-test-review
+  - security.least-privilege-approval
+optionalNodeIds:
+  - harness.budget-recovery
+  - llm.reasoning-cost
+  - evals.datasets-metrics
+extensionEdges:
+  - fromId: coding.repo-context-agents-md
+    toId: coding.agent-skills
+    kind: recommended
+  - fromId: coding.patch-test-review
+    toId: evals.datasets-metrics
+    kind: extension
