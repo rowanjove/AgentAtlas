@@ -4,7 +4,7 @@
 
 # AgentAtlas
 
-**Local-First AI Agent Engineering Knowledge, Graph & Simulation Workbench**
+**Offline-Ready AI Agent Engineering Knowledge, Graph & Simulation Workbench**
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D24-339933.svg)](https://nodejs.org/)
@@ -17,7 +17,7 @@
 
 ---
 
-AgentAtlas is a local-first desktop and web workbench for AI Agent engineering. It combines a structured knowledge base, interactive dependency graphs, deterministic mechanism simulation labs, production casebooks, and personal learning tools in a single offline-capable application — no cloud account or external database required.
+AgentAtlas is an offline-ready desktop and web workbench for AI Agent engineering. It combines a structured knowledge base, interactive dependency graphs, deterministic mechanism simulation labs, production casebooks, and personal learning tools in a single offline-capable application — no cloud account or external database required.
 
 ## Key Features
 
