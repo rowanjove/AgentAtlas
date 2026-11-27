@@ -4,7 +4,7 @@
 
 # AgentAtlas
 
-**本地优先的 AI Agent 工程学习、知识图谱与机制仿真工作台**
+**离线可用的 AI Agent 工程学习、知识图谱与机制仿真工作台**
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D24-339933.svg)](https://nodejs.org/)
@@ -17,7 +17,7 @@
 
 ---
 
-AgentAtlas 是一款面向 AI Agent 工程师的本地优先（Local-first）桌面与 Web 工作台。它将系统化的 Agent 工程知识库、可交互依赖图谱、确定性机制仿真实验室、工程案例手册与学习进度管理整合在一个离线可用的工具中，无需云端账号或外部数据库即可运行。
+AgentAtlas 是一款面向 AI Agent 工程师的离线可用桌面与 Web 工作台。它将系统化的 Agent 工程知识库、可交互依赖图谱、确定性机制仿真实验室、工程案例手册与学习进度管理整合在一个离线可用的工具中，无需云端账号或外部数据库即可运行。
 
 ## 核心特性
 
